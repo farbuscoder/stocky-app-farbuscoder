@@ -71,6 +71,26 @@ const Sidebar = (props) => {
             </Link>
           </li>
           <li>
+            <Link onClick={handleHide} to="/insumos">
+              Insumos
+            </Link>
+          </li>
+          <li>
+            <Link onClick={handleHide} to="/herramientas">
+              Herramientas
+            </Link>
+          </li>
+          <li>
+            <Link onClick={handleHide} to="/motores">
+              Motores
+            </Link>
+          </li>
+          <li>
+            <Link onClick={handleHide} to="/repuestos">
+              Repuestos
+            </Link>
+          </li>
+          <li>
             <Link to="/">
               <button
                 className="logout-btn"

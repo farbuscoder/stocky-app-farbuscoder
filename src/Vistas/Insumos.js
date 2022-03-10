@@ -1,14 +1,20 @@
 import react, { useEffect, useState } from "react";
-import Grid from "../Componentes/Grid";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import Item from "../Componentes/Item";
 import { ProductContextState } from "../Context/Context";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 
-const Home = () => {
+const Insumos = () => {
   const { datos, emptyFilters, setEmptyFilters } = ProductContextState();
 
   const [wordToFilter, setWordToFilter] = useState([]);
 
-  const filtrados = datos.filter((dato) => dato.Marca === wordToFilter);
+  const insumos = datos.filter((dato) => dato.Categoria === "Insumos");
+
+  const filtrados = insumos.filter((insumo) => insumo.Marca === wordToFilter);
+
+  if (emptyFilters == true) {
+    filtrados.length = 0;
+  }
 
   const search = (word) => {
     try {
@@ -17,14 +23,9 @@ const Home = () => {
     } catch (error) {}
   };
 
-  if (emptyFilters == true) {
-    filtrados.length = 0;
-  }
-
   return (
     <div className="display">
-      <h1>Home</h1>
-      <h2>Todos los productos</h2>
+      <h1>Insumos</h1>
       <Formik
         initialValues={{ searchWord: "" }}
         validate={(valores) => {
@@ -32,11 +33,15 @@ const Home = () => {
 
           if (!valores.searchWord) {
             errores.searchWord = "Ingrese un termino de busqueda";
+          } else if (!/([A-z]{3,})/.test(valores.searchWord)) {
+            errores.searchWord = "Ingrese un termino de mas de dos letras";
           }
+
           return errores;
         }}
         onSubmit={(valores, { resetForm }) => {
           resetForm();
+          console.log("Enviado");
           const word = valores.searchWord;
           search(word);
         }}
@@ -66,10 +71,14 @@ const Home = () => {
         )}
       </Formik>
       <div className="content">
-        <Grid datos={filtrados == "" ? datos : filtrados} />
+        <div className="grid-container">
+          {(filtrados.length == 0 ? insumos : filtrados).map((insumo) => {
+            return <Item key={insumo._id} dato={insumo} />;
+          })}
+        </div>
       </div>
     </div>
   );
 };
 
-export default Home;
+export default Insumos;

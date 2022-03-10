@@ -12,7 +12,7 @@ const Btns = () => {
     ProductContextState();
 
   const downloadTable = () => {
-    let enlace = `https://server-stocky-app.herokuapp.com/products/report`;
+    let enlace = `https://server-stocky-app.herokuapp.com/api/products/report`;
     axios
       .get(enlace, {
         responseType: "blob",

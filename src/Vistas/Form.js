@@ -80,6 +80,10 @@ const Form = ({ newProduct }) => {
             <option value="EsteticaAutomotor">EsteticaAutomotor</option>
             <option value="Pegamentos">Pegamentos</option>
             <option value="Plumita">Plumita</option>
+            <option value="Insumos">Insumos</option>
+            <option value="Herramientas">Herramientas</option>
+            <option value="Motores">Motores</option>
+            <option value="Repuestos">Repuestos</option>
           </select>
 
           <input

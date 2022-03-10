@@ -5,7 +5,6 @@ const SideBarBtn = (props) => {
 
   const showClass = () => {
     setShow(!show);
-    console.log("hola");
   };
   return (
     <div

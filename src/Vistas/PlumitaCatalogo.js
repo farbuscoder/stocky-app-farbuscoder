@@ -8,7 +8,7 @@ const PlumitaCatalogo = () => {
 
   const [wordToFilter, setWordToFilter] = useState([]);
 
-  const plumitas = datos.filter((dato) => dato.Categoria === "Rodamientos");
+  const plumitas = datos.filter((dato) => dato.Categoria === "Plumita");
 
   const filtrados = plumitas.filter(
     (element) => element.Marca === wordToFilter

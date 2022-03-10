@@ -13,6 +13,10 @@ import Pegamentos from "./Vistas/Pegamentos";
 import PlumitaCatalogo from "./Vistas/PlumitaCatalogo";
 import Carbones from "./Vistas/Carbones";
 import EstAutomotor from "./Vistas/EstAutomotor";
+import Insumos from "./Vistas/Insumos";
+import Herramientas from "./Vistas/Herramientas";
+import Motores from "./Vistas/Motores";
+import Repuestos from "./Vistas/Repuestos";
 import Sidebar from "./Componentes/Sidebar";
 import SideBarBtn from "./Componentes/SideBarBtn";
 import Btns from "./Componentes/Btns";
@@ -137,6 +141,10 @@ const LoginRoutes = ({
       <Route path="/pegamentos" element={<Pegamentos />} />
       <Route path="/plumita" element={<PlumitaCatalogo />} />
       <Route path="/capacitores" element={<Capacitores />} />
+      <Route path="/insumos" element={<Insumos />} />
+      <Route path="/herramientas" element={<Herramientas />} />
+      <Route path="/repuestos" element={<Repuestos />} />
+      <Route path="/motores" element={<Motores />} />
       <Route path="/nuevoproducto" element={<Form newProduct={newProduct} />} />
       <Route path="/delete/:type" element={<Delete />} />
       <Route
