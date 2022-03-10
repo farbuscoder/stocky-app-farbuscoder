@@ -26,7 +26,9 @@ const Context = ({ children }) => {
   useEffect(() => {
     async function fetchData() {
       try {
-        const { data } = await Axios.get("http://localhost:4500/api/products/");
+        const { data } = await Axios.get(
+          "https://server-stocky-app.herokuapp.com/api/products"
+        );
         console.log(data.body);
         setDatos(data.body);
         setMoreProduct(false);
