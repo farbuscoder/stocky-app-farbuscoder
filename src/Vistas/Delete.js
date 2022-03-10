@@ -19,7 +19,9 @@ const Delete = () => {
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
-        Axios.delete(`http://localhost:4500/api/products/${type}`);
+        Axios.delete(
+          `https://server-stocky-app.herokuapp.com/api/products/${type}`
+        );
         setMoreProduct(true);
         Swal.fire("Producto eliminado correctamente!", "", "success").then(
           () => {

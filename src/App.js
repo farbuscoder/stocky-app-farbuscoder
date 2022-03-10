@@ -35,18 +35,21 @@ function App() {
   };
 
   const newProduct = async (Categoria, Marca, Modelo, Precio, Cantidad) => {
-    const { data } = await Axios.post("http://localhost:4500/api/products", {
-      Categoria,
-      Marca,
-      Modelo,
-      Precio,
-      Cantidad,
-    });
+    const { data } = await Axios.post(
+      "https://server-stocky-app.herokuapp.com/api/products",
+      {
+        Categoria,
+        Marca,
+        Modelo,
+        Precio,
+        Cantidad,
+      }
+    );
   };
 
   const updateProduct = async (productId, Modelo, Precio, Cantidad) => {
     const { data } = await Axios.put(
-      `http://localhost:4500/api/products/${productId}`,
+      `https://server-stocky-app.herokuapp.com/api/products/${productId}`,
       {
         Modelo,
         Precio,
