@@ -3,8 +3,9 @@ import axios from "axios";
 import Toastify from "toastify-js";
 import { Link } from "react-router-dom";
 import { AiOutlineHome } from "react-icons/ai";
-import { BiAddToQueue } from "react-icons/bi";
-import { AiOutlineCloudDownload } from "react-icons/ai";
+import { BiAddToQueue, BiMessage } from "react-icons/bi";
+import { AiOutlineCloudDownload, AiOutlineBarChart } from "react-icons/ai";
+import { BsChatRightText } from "react-icons/bs";
 import { ProductContextState } from "../Context/Context";
 
 const Btns = () => {
@@ -26,10 +27,10 @@ const Btns = () => {
         link.click();
         Toastify({
           text: "La descarga ha comenzado...",
-          duration: 4500,
+          duration: 3500,
           close: true,
-          gravity: "bottom", // `top` or `bottom`
-          position: "right", // `left`, `center` or `right`
+          gravity: "top", // `top` or `bottom`
+          position: "center", // `left`, `center` or `right`
           stopOnFocus: true, // Prevents dismissing of toast on hover
           style: {
             background: "#bee6c4",
@@ -45,23 +46,48 @@ const Btns = () => {
 
   return (
     <div className="container-btns">
-      <Link to="/">
-        <button
-          onClick={() => {
-            setEmptyFilters(true);
-          }}
-        >
-          <AiOutlineHome />
+      <div className="container-btns-one">
+        <Link to="/">
+          <button
+            onClick={() => {
+              setEmptyFilters(true);
+            }}
+          >
+            <AiOutlineHome />
+          </button>
+        </Link>
+        <div className="tooltip-container-one">Home</div>
+      </div>
+      <div className="container-btns-two">
+        <Link to="/nuevoproducto">
+          <button>
+            <BiAddToQueue />
+          </button>
+        </Link>
+        <div className="tooltip-container-two">Agregar producto</div>
+      </div>
+      <div className="container-btns-three">
+        <button onClick={downloadTable}>
+          <AiOutlineCloudDownload />
         </button>
-      </Link>
-      <Link to="/nuevoproducto">
-        <button>
-          <BiAddToQueue />
-        </button>
-      </Link>
-      <button onClick={downloadTable}>
-        <AiOutlineCloudDownload />
-      </button>
+        <div className="tooltip-container-three">Descargar Tabla</div>
+      </div>
+      <div className="container-btns-four">
+        <Link to="chart">
+          <button>
+            <AiOutlineBarChart />
+          </button>
+        </Link>
+        <div className="tooltip-container-four">Ver graficos</div>
+      </div>
+      <div className="container-btns-five">
+        <Link to="chat">
+          <button>
+            <BsChatRightText />
+          </button>
+        </Link>
+        <div className="tooltip-container-five">Anuncios</div>
+      </div>
     </div>
   );
 };

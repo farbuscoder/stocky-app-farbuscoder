@@ -14,14 +14,40 @@ const Context = ({ children }) => {
   const [datos, setDatos] = useState([]);
   const [moreProduct, setMoreProduct] = useState(false);
   const [productosMarca, setProductosMarca] = useState([]);
+  const [moreMensaje, setMoreMensaje] = useState(false);
+  const [cargandoProductos, setCargandoProductos] = useState(true);
   const [emptyFilters, setEmptyFilters] = useState(false);
+  const [chats, setChats] = useState([]);
+  const [mensaje, setMensaje] = useState({
+    User: "",
+    Mensaje: "",
+    Fecha: "",
+  });
   const [product, setProduct] = useState({
     Categoria: "",
     Marca: "",
     Modelo: "",
     Precio: "",
     Cantidad: "",
+    Fecha: "",
   });
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const { data } = await Axios.get(
+          "https://server-stocky-app.herokuapp.com/api/users"
+        );
+        setChats(data.body);
+
+        setMoreMensaje(false);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchData();
+  }, [moreMensaje]);
 
   useEffect(() => {
     async function fetchData() {
@@ -29,7 +55,7 @@ const Context = ({ children }) => {
         const { data } = await Axios.get(
           "https://server-stocky-app.herokuapp.com/api/products"
         );
-
+        setCargandoProductos(false);
         setDatos(data.body);
         setMoreProduct(false);
       } catch (error) {
@@ -52,6 +78,13 @@ const Context = ({ children }) => {
         setProductosMarca,
         emptyFilters,
         setEmptyFilters,
+        cargandoProductos,
+        setCargandoProductos,
+        chats,
+        setChats,
+        setMoreMensaje,
+        mensaje,
+        setMensaje,
       }}
     >
       {children}

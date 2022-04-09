@@ -1,4 +1,5 @@
 import react, { useEffect, useState } from "react";
+import BackToPage from "../Componentes/BackToPage";
 import Swal from "sweetalert2";
 import { ProductContextState } from "../Context/Context";
 
@@ -15,13 +16,21 @@ const Form = ({ newProduct }) => {
       Modelo: "",
       Precio: "",
       Cantidad: "",
+      Fecha: "",
+      FechaAct: "",
     });
   };
+
+  let fecha = new Date();
+
+  let date = fecha.toDateString();
 
   const handleInputChange = (e) => {
     setProduct({
       ...product,
       [e.target.name]: e.target.value,
+      Fecha: date,
+      FechaAct: "",
     });
   };
 
@@ -38,7 +47,9 @@ const Form = ({ newProduct }) => {
         product.Marca,
         product.Modelo,
         product.Precio,
-        product.Cantidad
+        product.Cantidad,
+        product.Fecha,
+        product.FechaAct
       );
       setCreandoProducto(false);
       Swal.fire({
@@ -60,6 +71,7 @@ const Form = ({ newProduct }) => {
     <div className="display-form">
       <div className="form-container">
         <h2>Agregar un producto</h2>
+        <BackToPage />
         <form onSubmit={handleSubmit}>
           <label htmlFor="pet-select">Categoria:</label>
 
@@ -129,6 +141,15 @@ const Form = ({ newProduct }) => {
             onChange={handleInputChange}
             required
           />
+          <input
+            type="hidden"
+            name="Fecha"
+            id="fecha"
+            placeholder="Fecha"
+            value={product.Fecha}
+            onChange={handleInputChange}
+          />
+
           <button type="submit">Aceptar</button>
         </form>
       </div>

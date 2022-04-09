@@ -4,6 +4,7 @@ import { BiPaint, BiEdit } from "react-icons/bi";
 import { MdAttachMoney } from "react-icons/md";
 import { FaStackOverflow } from "react-icons/fa";
 import { RiDeleteBack2Line } from "react-icons/ri";
+import { FaInfoCircle } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const Item = ({ dato }) => {
@@ -43,6 +44,11 @@ const Item = ({ dato }) => {
           </Link>
         </div>
       </div>
+      <Link to={{ pathname: `/detail/${dato._id}` }}>
+        <button className="detail-btn">
+          <FaInfoCircle />
+        </button>
+      </Link>
     </div>
   );
 };

@@ -1,5 +1,6 @@
 import react, { useEffect, useState } from "react";
 import Item from "../Componentes/Item";
+import Loader from "../Componentes/Loader";
 import { ProductContextState } from "../Context/Context";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 
@@ -30,6 +31,7 @@ const Herramientas = () => {
   return (
     <div className="display">
       <h1>Herramientas</h1>
+
       <Formik
         initialValues={{ searchWord: "" }}
         validate={(valores) => {

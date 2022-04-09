@@ -13,10 +13,15 @@ const Update = ({ updateProduct }) => {
   const producto = datos.filter((dato) => dato._id === type);
   const productoCategoria = producto[0].Categoria;
 
+  let fecha = new Date();
+
+  let date = fecha.toDateString();
+
   function handleInputChange(e) {
     setProduct({
       ...product,
       [e.target.name]: e.target.value,
+      FechaAct: date,
     });
   }
 
@@ -28,6 +33,8 @@ const Update = ({ updateProduct }) => {
       Modelo: "",
       Precio: "",
       Cantidad: "",
+      Fecha: "",
+      FechaAct: "",
     });
   };
 
@@ -40,7 +47,8 @@ const Update = ({ updateProduct }) => {
         type,
         product.Modelo,
         product.Precio,
-        product.Cantidad
+        product.Cantidad,
+        product.FechaAct
       );
       setCreandoProducto(false);
       Swal.fire({
@@ -125,6 +133,14 @@ const Update = ({ updateProduct }) => {
             value={product.Cantidad}
             onChange={handleInputChange}
             required
+          />
+          <input
+            type="hidden"
+            name="Fecha"
+            id="fecha"
+            placeholder="Fecha"
+            value={product.FechaAct}
+            onChange={handleInputChange}
           />
           <button type="submit">Aceptar</button>
         </form>

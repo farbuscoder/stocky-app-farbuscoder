@@ -22,7 +22,11 @@ import SideBarBtn from "./Componentes/SideBarBtn";
 import Btns from "./Componentes/Btns";
 import Delete from "./Vistas/Delete";
 import Update from "./Vistas/Update";
+import Detail from "./Vistas/Detail";
+import Chart from "./Vistas/Chart";
+import ChatRoom from "./Vistas/ChatRoom";
 import Footer from "./Componentes/Footer";
+import Swal from "sweetalert2";
 import { GiStack } from "react-icons/gi";
 import Form from "./Vistas/Form";
 
@@ -35,10 +39,36 @@ function App() {
   );
 
   const handleFailure = (result) => {
-    alert(result);
+    Swal.fire({
+      title: "Hubo un problema para iniciar sesion",
+      icon: "error",
+      showDenyButton: false,
+      confirmButtonText: "Ok",
+      timer: 4000,
+    });
+    console.log(result);
   };
 
-  const newProduct = async (Categoria, Marca, Modelo, Precio, Cantidad) => {
+  const newMensaje = async (Mensaje, Fecha, User) => {
+    const { data } = await Axios.post(
+      "https://server-stocky-app.herokuapp.com/api/users",
+      {
+        Mensaje,
+        Fecha,
+        User,
+      }
+    );
+  };
+
+  const newProduct = async (
+    Categoria,
+    Marca,
+    Modelo,
+    Precio,
+    Cantidad,
+    Fecha,
+    FechaAct
+  ) => {
     const { data } = await Axios.post(
       "https://server-stocky-app.herokuapp.com/api/products",
       {
@@ -47,17 +77,26 @@ function App() {
         Modelo,
         Precio,
         Cantidad,
+        Fecha,
+        FechaAct,
       }
     );
   };
 
-  const updateProduct = async (productId, Modelo, Precio, Cantidad) => {
+  const updateProduct = async (
+    productId,
+    Modelo,
+    Precio,
+    Cantidad,
+    FechaAct
+  ) => {
     const { data } = await Axios.put(
       `https://server-stocky-app.herokuapp.com/api/products/${productId}`,
       {
         Modelo,
         Precio,
         Cantidad,
+        FechaAct,
       }
     );
   };
@@ -98,6 +137,7 @@ function App() {
           handleLogout={handleLogout}
           newProduct={newProduct}
           updateProduct={updateProduct}
+          newMensaje={newMensaje}
         />
       ) : (
         <div className="app-home">
@@ -122,6 +162,7 @@ const LoginRoutes = ({
   loginDataEmail,
   newProduct,
   updateProduct,
+  newMensaje,
 }) => {
   return (
     <Routes>
@@ -151,6 +192,9 @@ const LoginRoutes = ({
         path="/update/:type"
         element={<Update updateProduct={updateProduct} />}
       />
+      <Route path="/detail/:type" element={<Detail />} />
+      <Route path="/chart" element={<Chart />} />
+      <Route path="/chat" element={<ChatRoom newMensaje={newMensaje} />} />
     </Routes>
   );
 };
