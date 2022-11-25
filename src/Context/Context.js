@@ -36,7 +36,7 @@ const Context = ({ children }) => {
     const fetchData = async () => {
       try {
         const { data } = await Axios.get(
-          "https://stocky-backend-v1-0.vercel.app/api/users"
+          "https://stocky-backend-v1-0-farbuscoder.vercel.app/api/users"
         );
         setChats(data.body);
 
@@ -53,7 +53,7 @@ const Context = ({ children }) => {
     async function fetchData() {
       try {
         const { data } = await Axios.get(
-          "https://stocky-backend-v1-0.vercel.app/api/products"
+          "https://stocky-backend-v1-0-farbuscoder.vercel.app/api/products"
         );
         setCargandoProductos(false);
         setDatos(data.body);

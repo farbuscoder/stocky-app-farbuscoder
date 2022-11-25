@@ -31,7 +31,7 @@ const Detail = () => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
         Axios.delete(
-          `https://server-stocky-app.herokuapp.com/api/products/${producto[0]._id}`
+          `https://stocky-backend-v1-0-farbuscoder.vercel.app/api/products/${producto[0]._id}`
         );
 
         setMoreProduct(true);

@@ -8,7 +8,7 @@ const SearchBar = () => {
   async function search(word) {
     try {
       const { data } = await axios.get(
-        `http://localhost:4500/api/products/marca/${word}`
+        `https://stocky-backend-v1-0-farbuscoder.vercel.app/api/products/marca/${word}`
       );
       console.log(data.body);
       setProductosMarca(data.body);
@@ -26,7 +26,7 @@ const SearchBar = () => {
 
           if (!valores.searchWord) {
             errores.searchWord = "Ingrese un termino de busqueda";
-          } 
+          }
 
           return errores;
         }}

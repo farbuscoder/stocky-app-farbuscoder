@@ -49,15 +49,14 @@ function App() {
     console.log(result);
   };
 
+  const url = "https://stocky-backend-v1-0-farbuscoder.vercel.app/";
+
   const newMensaje = async (Mensaje, Fecha, User) => {
-    const { data } = await Axios.post(
-      "https://server-stocky-app.herokuapp.com/api/users",
-      {
-        Mensaje,
-        Fecha,
-        User,
-      }
-    );
+    const { data } = await Axios.post(`${url}/api/users`, {
+      Mensaje,
+      Fecha,
+      User,
+    });
   };
 
   const newProduct = async (
@@ -69,18 +68,15 @@ function App() {
     Fecha,
     FechaAct
   ) => {
-    const { data } = await Axios.post(
-      "https://server-stocky-app.herokuapp.com/api/products",
-      {
-        Categoria,
-        Marca,
-        Modelo,
-        Precio,
-        Cantidad,
-        Fecha,
-        FechaAct,
-      }
-    );
+    const { data } = await Axios.post(`${url}/api/products`, {
+      Categoria,
+      Marca,
+      Modelo,
+      Precio,
+      Cantidad,
+      Fecha,
+      FechaAct,
+    });
   };
 
   const updateProduct = async (
@@ -90,15 +86,12 @@ function App() {
     Cantidad,
     FechaAct
   ) => {
-    const { data } = await Axios.put(
-      `https://server-stocky-app.herokuapp.com/api/products/${productId}`,
-      {
-        Modelo,
-        Precio,
-        Cantidad,
-        FechaAct,
-      }
-    );
+    const { data } = await Axios.put(`${url}/api/products/${productId}`, {
+      Modelo,
+      Precio,
+      Cantidad,
+      FechaAct,
+    });
   };
 
   const handleLogin = async (googleData) => {

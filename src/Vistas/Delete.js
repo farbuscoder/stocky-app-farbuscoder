@@ -20,7 +20,7 @@ const Delete = () => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
         Axios.delete(
-          `https://server-stocky-app.herokuapp.com/api/products/${type}`
+          `https://stocky-backend-v1-0-farbuscoder.vercel.app/api/products/${type}`
         );
         setMoreProduct(true);
         Swal.fire("Producto eliminado correctamente!", "", "success").then(
