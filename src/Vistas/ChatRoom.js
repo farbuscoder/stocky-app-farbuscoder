@@ -17,7 +17,11 @@ function getUser() {
   return JSON.parse(localStorage.getItem("loginData"));
 }
 
-const user = getUser();
+const user = getUser()
+  ? getUser()
+  : { name: "Invitado", mail: "invitado@gmail.com" };
+
+console.log(user.name);
 
 const name = user.name.replace(/ /g, "");
 

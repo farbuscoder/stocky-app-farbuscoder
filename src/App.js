@@ -49,7 +49,7 @@ function App() {
     console.log(result);
   };
 
-  const url = "https://stocky-backend-v1-0-farbuscoder.vercel.app/";
+  const url = "https://stocky-backend-v1-0-farbuscoder.vercel.app";
 
   const newMensaje = async (Mensaje, Fecha, User) => {
     const { data } = await Axios.post(`${url}/api/users`, {
@@ -95,17 +95,23 @@ function App() {
   };
 
   const handleLogin = async (googleData) => {
-    const res = await fetch("/api/google-login", {
-      method: "POST",
-      body: JSON.stringify({
-        token: googleData.tokenId,
-      }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const res = await fetch(
+      `https://stocky-backend-v1-0.vercel.app/api/google-login`,
+      {
+        method: "POST",
+        body: JSON.stringify({
+          token: googleData.tokenId,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+      }
+    );
 
     const data = await res.json();
+    console.log(data);
+
     setLoginData(data);
     localStorage.setItem("loginData", JSON.stringify(data));
   };
